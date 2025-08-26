@@ -15,7 +15,7 @@
 </head>
 <body class="h-screen p-2 bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]" style="font-family: 'Roboto'; font-size: 18px;">
 <button id="topBar"class="hidden w-full z-50 text-left text-white px-5 py-3 h-12 fixed top-0 left-0" onclick="showCont('menuCont')">☰ Start Here</button>
-<div id="menuCont" class="hidden text-white w-full max-w-md p-2 mt-12 rounded bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]">
+<div id="menuCont" class="hidden text-white w-full max-w-md p-2 mt-12 rounded-lg border-2 border-green-500"> <!-- bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]-->
     <button class="btnDD" onclick="showCont('createCont')">Create</button>
     <button class="btnDD" onclick="showCont('updCont')">Alter</button>
     <button class="btnDD" onclick="showCont('finCont')">Financials</button>
@@ -24,23 +24,23 @@
     <button class="btnDD" onclick="showCont()">Home</button>
 </div>
 
-<div id ="createCont" class="hidden w-full max-w-md text-white p-2 mt-12 rounded bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]">
+<div id ="createCont" class="hidden w-full max-w-md text-white p-2 mt-12 rounded-lg border-2 border-green-500"> <!-- bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]-->
     <button id=1 class="btnDD" onclick="changeLists()">Ledger</button>
     <button id=2 class="btnDD" onclick="changeLists()">Product</button>
     <button id=3 class="btnDD" onclick="showEle(301,302,303,304,305,306,307,3010)">Transaction</button>
 </div>
-<div id ="updCont" class="hidden w-full max-w-md text-white p-2 mt-12 rounded bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]">
+<div id ="updCont" class="hidden w-full max-w-md text-white p-2 mt-12 rounded-lg border-2 border-green-500"> <!-- bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]-->
     <button id=11 class="btnDD" onclick="insertProdLed('Opening Balance', false)">Update Ledger</button>
     <button id=12 class="btnDD" onclick="insertProdLed('Opening Stock', false)">Update Product</button>
     <button id=13 class="btnDD" onclick="insertTran(true, true, false, false)">Update Transaction</button>
 </div>
-<div id ="finCont" class="hidden w-full max-w-md text-white p-2 mt-12 rounded bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]">
+<div id ="finCont" class="hidden w-full max-w-md text-white p-2 mt-12 rounded-lg border-2 border-green-500"> <!-- bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]-->
     <button id=21 class="btnDD" onclick="viewSummary('receivables')">Receivables</button>
     <button id=22 class="btnDD" onclick="viewSummary('payables')">Payables</button>
     <button id=23 class="btnDD" onclick="showCont('plCont')">Profit & Loss</button>
     <button id=25 class="btnDD" onclick="alert('Under Construction! Coming Soooooooon')">Khatavahi</button>
 </div>
-<div id ="rptCont" class="hidden w-full max-w-md text-white p-2 mt-12 rounded bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]">
+<div id ="rptCont" class="hidden w-full max-w-md text-white p-2 mt-12 rounded-lg border-2 border-green-500"> <!-- bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]-->
     <button id=31 class="btnDD" onclick="insertTran(false, false, false, false)">Daybook</button>
     <button id=32 class="btnDD" onclick="insertTran(false, false, false, true)">CashBook</button>
     <button id=33 class="btnDD" onclick="viewSummary('sales')">Sales Register</button>
@@ -49,25 +49,25 @@
     <button id=36 class="btnDD" onclick="insertProdLed('Opening Stock', true)">Products & Groups</button>
     <button id=37 class="btnDD" onclick="showDashboard()">Dashboard</button>
 </div>
-<div id ="eleCont" class="hidden w-full max-w-md p-2 mt-12 rounded bg-white">
+<div id ="eleCont" class="hidden w-full max-w-md p-2 mt-12 text-white rounded-lg border-2 border-green-500"> <!-- bg-[radial-gradient(circle_at_80%_10%,#0b41e0,#f0717b)]-->
     <input id=101 class="input-box" type="text"/><label class="label">Select Group</label>
     <input id=102 class="input-box" type="text"/><label class="label">Name</label>
     <input id=103 class="input-box" type="number"/><label class="label">Opening Balance/Stock</label>
     <input id=104 class="input-box" type="text"/><label class="label">Credit/Debit</label>
-    <input id=105 class="input-box mb-10" type="text"/><label class="label">Narration</label>
+    <input id=105 class="input-box mb-[50px]" type="text"/><label class="label">Narration</label>
 
     <input id=301 class="input-box" type="text"/><label class="label">Transaction Type</label>
     <input id=302 class="input-box date-input" type="text"/><label class="label">Date</label>
     <input id=303 class="input-box" type="text"/><label class="label">From</label>
     <input id=304 class="input-box" type="text"/><label class="label">To</label>
     <input id=305 class="input-box" type="number"/><label class="label">Amount</label>
-    <input id=306 class="input-box mb-10" type="text"/><label class="label">Narration</label>
+    <input id=306 class="input-box mb-[50px]" type="text"/><label class="label">Narration</label>
 </div>
-<div id=1010 class="hidden p-2 mt-2 ml-[250px] w-fit rounded-full h-[65px] space-x-[78px] bg-[radial-gradient(circle_at_60%_20%,#5eead4,#003366)]">
+<div id=1010 class="hidden p-2 mt-2 w-fit rounded-full h-[65px] space-x-[78px] bg-[radial-gradient(circle_at_60%_20%,#5eead4,#003366)]">
     <button class="btnSV" onclick="saveProdLed()">💾</button>
-    <button class="btnSV" title="Back" onclick="showEle(301,302,303,304,305,306,307,3010)">➤</button>
+    <button class="btnSV" title="Back" onclick="alert('Under Construction 🏗️\nBy\nL&T 👷🏼')">➤</button>
 </div>
-<div id=3010 class="hidden p-2 mt-2 ml-[250px] w-fit rounded-full h-[65px] space-x-[78px] bg-[radial-gradient(circle_at_60%_20%,#5eead4,#003366)]">
+<div id=3010 class="hidden p-2 mt-2 w-fit rounded-full h-[65px] space-x-[78px] bg-[radial-gradient(circle_at_60%_30%,#5eead4,#003366)]">
     <button class="btnSV" onclick="saveTransaction()">💾</button>
     <button class="btnSV" title="View Daybook" onclick="insertTran(true, true, false)">📖</button>
 </div>
@@ -89,10 +89,10 @@
 
 <div id="dashboard" class="hidden w-full max-w-md mt-[50px] ml-1 text-white"><h2>Dashboard</h2><canvas id="dashboardChart"></canvas></div>
 
-<div id="lgnCont" class="hidden max-w-md p-2 mt-[50px] rounded-lg">
+<div id="lgnCont" class="hidden max-w-md p-2 mt-[50px] rounded bg-white">
     <input class="input-box" id="loginEmail" type="email" /><label for="loginEmail" class="label">Email</label>
     <input class="input-box" id="loginPassword" type="password" /><label for="loginPassword" class="label">Password</label>
-    <button class="btnSV block mx-auto" title="Login" onclick="login()">🏠︎</button>
+    <button class="btnSV block mx-auto mt-5" title="Login" onclick="login()">🏠︎</button>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script><script> flatpickr(".date-input", { dateFormat: "d-m-Y", defaultDate: new Date() }); </script>
@@ -136,8 +136,8 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         const wrapperClass = "relative mt-6";
-        const inputClass = "peer w-full border-b-2 border-gray-400 pt-2 focus:outline-none focus:border-blue-600";
-        const labelClass = "absolute top-2 left-0 -translate-y-6 peer-placeholder-shown:translate-y-0 peer-focus:text-blue-600 text-gray-400";
+        const inputClass = "peer w-full bg-transparent border-b-2 border-gray-400 pt-2 focus:outline-none focus:border-green-600";
+        const labelClass = "absolute top-2 left-0 -translate-y-6 peer-placeholder-shown:translate-y-0 peer-focus:text-green-600 text-gray-400";
 
         document.querySelectorAll('.input-box').forEach(input => {
             const label = input.nextElementSibling;
@@ -243,7 +243,7 @@
             wrapper.appendChild(inputElement);
         }
         let dropdown = document.createElement("ul");
-        dropdown.className = "absolute z-50 w-full h-[500px] overflow-y-auto hidden rounded-b bg-gray-100";
+        dropdown.className = "absolute z-50 w-full h-[500px] overflow-y-auto hidden rounded-b bg-[radial-gradient(circle_at_80%_20%,#b34515,#096103)]";
         wrapper.appendChild(dropdown);
         function filterList() {
             const search = inputElement.value.toLowerCase();
