@@ -26,7 +26,7 @@
 <div id ="createCont" class="hidden w-full max-w-md text-white p-2 mt-12 rounded-lg shadow-xl">
     <button id=1 class="btnDD" onclick="changeLists()">🧑‍🚒 Ledger</button>
     <button id=2 class="btnDD" onclick="changeLists()">📦 Product</button>
-    <button id=3 class="btnDD" onclick="showEle(301,302,303,304,305,105,3010)">🛒 Transaction</button>
+    <button id=3 class="btnDD" onclick="showEle(301,302,303,304,305,306,3010)">🛒 Transaction</button>
 </div>
 <div id ="updCont" class="hidden w-full max-w-md text-white p-2 mt-12 rounded-lg shadow-xl">
     <button id=11 class="btnDD" onclick="insertProdLed('Opening Balance', false)">✏️ Update Ledger</button>
@@ -60,6 +60,7 @@
     <input id=303 class="input-box" type="text"/><label class="label">From</label>
     <input id=304 class="input-box" type="text"/><label class="label">To</label>
     <input id=305 class="input-box" type="number"/><label class="label">Amount</label>
+    <input id=306 class="input-box mb-[50px]" type="text"/><label class="label">Narration</label>
 </div>
 <div id=1010 class="hidden p-2 mt-2 w-fit rounded-full h-[65px] space-x-[78px] bg-[radial-gradient(circle_at_50%_20%,#003366,#d428a3)] shodow-2xl">
     <button class="btnSV" onclick="saveProdLed()">💾</button>
@@ -167,19 +168,19 @@
     });
 
     window.showEle = function (...ids) {
-        showCont('eleCont');
+        showCont('eleCont')
         const cont = document.getElementById("eleCont");
-        Array.from(cont.children).forEach(child => child.style.setProperty('display', 'none', 'important') );
+        Array.from(cont.children).forEach(child  => child.style.setProperty('display', 'none', 'important'));
         let firstFocusable = null;
         ids.forEach(id => {
             let el = document.getElementById(id);
-            if (!el) return;
-            if (el.tagName === "INPUT" || el.tagName === "LABEL") { el = el.parentElement; }
-            cont.appendChild(el);
-            el.style.setProperty('display', 'block', 'important');
-            if (!firstFocusable) { firstFocusable = el.querySelector("input, select, textarea, button"); }
+            if (el) { 
+                if (el.tagName === "INPUT" || el.tagName === "LABEL") { el = el.parentElement;}
+                el.style.setProperty('display', 'block', 'important');
+                if (!firstFocusable) { firstFocusable = el.querySelector("input, select, textarea, button"); }
+            }
         });
-        if (firstFocusable) { requestAnimationFrame(() => firstFocusable.focus()); }
+        if (firstFocusable) { requestAnimationFrame(() => { firstFocusable.focus(); }); }
     };
 
     window.clear = function () {
@@ -414,13 +415,13 @@
             case "Purchase":
             case "Receipt":
             case "Payment":
-                showEle(301,302,303,304,305,105,3010);
+                showEle(301,302,303,304,305,306,3010);
                 document.getElementById("301").value = rowData.ttype || "";
                 document.getElementById("302").value = rowData.date || "";
                 document.getElementById("303").value = rowData.fparty || "";
                 document.getElementById("304").value = rowData.tparty || "";
                 document.getElementById("305").value = rowData.amt || "";
-                document.getElementById("105").value = rowData.nar || "";
+                document.getElementById("306").value = rowData.nar || "";
                 break;
         }
         document.getElementById("301").disabled = true;
@@ -482,7 +483,7 @@
         const fparty = document.getElementById("303").value.trim();
         const tparty = document.getElementById("304").value.trim();
         const amt = parseFloat(document.getElementById("305").value.trim()) || 0;
-        const nar = document.getElementById("105").value.trim();
+        const nar = document.getElementById("306").value.trim();
         
         if (!ttype || !date || !fparty || !tparty || isNaN(amt) || amt <= 0) { alert("Please fill all required fields properly\nAmount must be a number > 0"); return ; }
         const tranData = {ttype, date, fparty, tparty, amt};
