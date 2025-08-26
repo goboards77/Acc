@@ -14,14 +14,14 @@
     <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator.min.css" rel="stylesheet">
 </head>
 <body class="h-screen p-1 bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]" style="font-family: 'Roboto'; font-size: 18px;">
-<button id="topBar"class="hidden w-full z-50 text-left text-white px-5 py-3 h-12 fixed top-0 left-0 shadow-lg" onclick="showCont('menuCont')">☰ Start Here</button>
+<button id="topBar"class="hidden w-full z-[2147483647] text-left text-white px-5 py-3 h-12 fixed top-0 left-0 shadow-lg bg-[radial-gradient(circle_at_70%_20%,#d428a3,#003366)]" onclick="showCont('menuCont')">☰ Start Here</button>
 <div id="menuCont" class="hidden text-white w-full max-w-md p-2 mt-12 rounded-lg shadow-xl">
     <button class="btnDD" onclick="showCont('createCont')">👔 Create</button>
     <button class="btnDD" onclick="showCont('updCont')">✏️ Alter</button>
     <button class="btnDD" onclick="showCont('finCont')">💵 Financials</button>
     <button class="btnDD" onclick="showCont('rptCont')">📊 Report</button>
     <button class="btnDD" onclick="logout()">🔐 Logout</button>
-    <button class="btnDD" onclick="showCont()">🏚️ Home</button>
+    <button class="btnDD" onclick="showCont()">🏠︎ Home</button>
 </div>
 <div id ="createCont" class="hidden w-full max-w-md text-white p-2 mt-12 rounded-lg shadow-xl">
     <button id=1 class="btnDD" onclick="changeLists()">🧑‍🚒 Ledger</button>
@@ -37,7 +37,7 @@
     <button id=21 class="btnDD" onclick="viewSummary('receivables')">💰 Receivables</button>
     <button id=22 class="btnDD" onclick="viewSummary('payables')">💸 Payables</button>
     <button id=23 class="btnDD" onclick="showCont('plCont')">📈 Profit & Loss</button>
-    <button id=25 class="btnDD" onclick="alert('Under Construction! Coming Soooooooon')">❓ Khatavahi</button>
+    <button id=25 class="btnDD" onclick="showCont('khtCont')">❓ Khatavahi</button>
 </div>
 <div id ="rptCont" class="hidden w-full max-w-md text-white p-2 mt-12 rounded-lg shadow-xl">
     <button id=31 class="btnDD" onclick="insertTran(false, false, false, false)">📘 Daybook</button>
@@ -69,13 +69,21 @@
 <div id=3010 class="hidden p-2 mt-2 w-fit rounded-full h-[65px] space-x-[78px] bg-[radial-gradient(circle_at_50%_20%,#003366,#d428a3)] shodow-2xl">
     <button class="btnSV" onclick="saveTransaction()">💾</button>
     <button class="btnSV" title="View Daybook" onclick="insertTran(true, true, false)">📖</button>
-</div>
+</div>          
 <div id="plCont" class="hidden w-full max-w-md mt-[50px] flex items-center gap-2 p-1 rounded-lg shadow-xl">
-    <input id="clostk" type="number" placeholder="Enter Closing Stock" class="w-[225px] bg-transparent text-white border border-green-600 rounded px-2 h-10 inline-block" />
+    <input id="clostk" type="number" placeholder="Enter Closing Stock" class="w-[225px] bg-transparent text-white border border-green-600 rounded px-2 h-10 inline-block"/>
     <button onclick="profit_loss()" title="view profit_loss" class="btnSV">⏳</button>
     <div id="plLabels" class="max-w-md mx-auto mt-4 border rounded-lg divide-y"></div>
 </div>
-<div id="tblCont" class="hidden w-full mt-[50px] rounded-lg p-1 space-y-2 shadow-xl">
+<div id="khtCont" class="hidden w-full max-w-md mt-[100px] flex items-center gap-2 p-2 ml-10 rounded-lg shadow-2xl shadow-[0_8px_15px_rgba(0,0,0,0.4)]">
+    <input id="date1" class="input-box date-input" type="text"/><label class="label">Start Date</label>
+    <input id="date2" class="input-box date-input" type="text"/><label class="label">End Date</label>
+    <input id="name1" class="input-box" type="text"/><label class="label">Party Name</label>
+    <div class="p-2 mt-2 w-[200px] rounded-full h-[65px] space-x-[78px] bg-[radial-gradient(circle_at_50%_20%,#003366,#d428a3)] shodow-2xl">
+        <button class="btnSV" onclick="khatavahi()">⏳</button>
+    </div>
+</div>
+<div id="tblCont" class="hidden relative z-0 w-full mt-[50px] rounded-lg p-1 space-y-2 shadow-xl">
     <div><input id="searchBox" class="px-2 h-10 bg-transparent text-white border border-green-600 rounded" placeholder="Search..." type="text" autocomplete="off"/></div>
     <div class="w-fit flex gap-8 p-2 justify-start rounded-full h-[65px] bg-[radial-gradient(circle_at_60%_20%,#003366,#5eead4)]">
         <button id="excelBtn" class="btnSV">XL</button>
@@ -189,7 +197,7 @@
     };
 
     window.showCont = function (...idToShow) {
-        const allIds = ['menuCont', 'createCont', 'updCont', 'finCont', 'rptCont', 'eleCont', '1010', '3010', 'plCont', 'tblCont', 'dashCont', 'lgnCont'];
+        const allIds = ['menuCont', 'createCont', 'updCont', 'finCont', 'rptCont', 'eleCont', '1010', '3010', 'plCont', 'khtCont', 'tblCont', 'dashCont', 'lgnCont'];
         allIds.forEach(id => { clear(); const el = document.getElementById(id); if (el) { el.classList.add("hidden"); el.style.setProperty('display', 'none', 'important'); } });
         idToShow.forEach(id => { const el = document.getElementById(id); if (el) { el.classList.remove("hidden"); el.style.setProperty('display', 'block', 'important'); } }); 
     };
@@ -229,6 +237,7 @@
         window.crdbcsbkangexp_list = [...crdbcsbkangexpSet].sort((a, b) => a.localeCompare(b)); 
         attachDropdown(document.getElementById("104"), ["Credit", "Debit"]);
         attachDropdown(document.getElementById("301"), ["Sales", "Purchase", "Receipt", "Payment", "Expense"]);
+        attachDropdown(document.getElementById("name1"), window.names_list);
     };
     window.attachDropdown = function (inputElement, dataList) {
         if (inputElement._dropdownCleanup) { inputElement._dropdownCleanup(); }
@@ -614,6 +623,62 @@
         createEditableTable(rows, columns, false, false, false); 
     };
 
+    window.khatavahi = async function () {
+        const [d1, m1, y1] = document.getElementById("date1").value.split("-").map(Number);
+        const [d2, m2, y2] = document.getElementById("date2").value.split("-").map(Number);
+        const date1 = new Date(y1, m1 - 1, d1);
+        const date2 = new Date(y2, m2 - 1, d2);
+
+        const name = document.getElementById("name1").value.trim();
+        if (!name || isNaN(date1) || isNaN(date2)) { return alert("Please enter valid inputs"); }
+        const allData = await fetchAllOnce();
+        let openingBalance = 0, transactions = [], effect = 0;
+
+        allData.forEach((data) => {
+            if (!data.date) return;
+            const [yy, mm, dd] = data.date.split("-").map(Number);
+            const tDate = new Date(yy, mm - 1, dd);
+            const amt = parseFloat(data.amt || 0);
+
+            if (data.fparty === name) effect = amt;
+            else if (data.tparty === name) effect = -amt;
+            else return;
+
+            if (tDate < date1) { openingBalance += effect; } 
+            else if (tDate >= date1 && tDate <= date2) {
+                transactions.push({
+                    date: data.date.split('-').reverse().join('-').replace(/(\d{2})-(\d{4})$/, '$1-$2'),
+                    ttype: data.ttype,
+                    from: data.fparty,
+                    to: data.tparty,
+                    amount: effect
+                });
+            }
+        });
+        const periodNet = transactions.reduce((sum, t) => sum + t.amount, 0);
+        const closingBalance = openingBalance + periodNet;
+        const rows = [];
+        rows.push({ to: "Opening Balance", amount: openingBalance.toFixed(0) });
+        transactions.forEach(t => {
+            rows.push({
+                date: t.date,
+                ttype: t.ttype,
+                from: t.from,
+                to: t.to,
+                amount: t.amount.toFixed(0)
+            });
+        });
+        rows.push({ to: "Closing Balance", amount: closingBalance.toFixed(0) });
+        const columns = [
+            { title: "Date", field: "date" },
+            { title: "Type", field: "ttype" },
+            { title: "From", field: "from" },
+            { title: "To", field: "to" },
+            { title: "Amount", field: "amount", hozAlign: "right" }
+        ];
+        createEditableTable(rows, columns, false, false, false);
+    };
+
     window.profit_loss = async function () {
         const closingStock = parseFloat(document.getElementById("clostk").value.trim()) || 0;
         const allData = await fetchAllOnce();
@@ -694,4 +759,3 @@
 </script>
 </body>
 </html>
-
